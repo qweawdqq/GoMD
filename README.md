@@ -1,6 +1,7 @@
 # golang实现的博客程序
 
-
+## 详情
+在原有基础上添加了搜索引擎
 ## 如何使用
 
 
@@ -10,6 +11,7 @@ go get github.com/beego/bee
 go get github.com/jmoiron/sqlx
 go get github.com/mattn/go-sqlite3
 go get gopkg.in/russross/blackfriday.v2
+go get github.com/go-ego/riot
 ```
 
 > 安装完以上库，克隆仓库到机器上
