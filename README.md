@@ -18,7 +18,7 @@ go get github.com/go-ego/riot
 
 ```shell
 cd $GOPATH/src/
-go get github.com/qweawdqq/GoMD
+git clone https://github.com/qweawdqq/GoMD.git
 cd GoMD
 ```
 
