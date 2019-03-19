@@ -157,9 +157,9 @@ func AddContent(art *models.Article) (err error) {
 	ct.Attri = attri
 	//生成主键
 	//docid := uint64(time.Now().Unix())
-	docid := uint64(art.Id)
+	docid := string(art.Id)
 	//插入
-	searcher.Index(string(docid), ct)
+	searcher.Index(docid, ct)
 	//searcher.Index(22, types.DocData{Content: content})
 	//刷新
 	searcher.Flush()
@@ -168,18 +168,18 @@ func AddContent(art *models.Article) (err error) {
 }
 
 func DeleteContent(id int) {
-	docid := uint64(id)
-	searcher.RemoveDoc(string(docid), true)
+	docid := string(id)
+	searcher.RemoveDoc(docid, true)
 	fmt.Println("使用了引擎删除文章功能", docid)
 
 }
 
 func UpdateContent(id int, art *models.Article) {
-	docid := uint64(id)
+	docid := string(id)
 	content := art.Title + "$$" + art.Content
 	ct := types.DocData{Content: content}
 	ct.Attri = art
-	searcher.IndexDoc(string(docid), ct, true)
+	searcher.IndexDoc(docid, ct, true)
 	fmt.Println("使用了引擎更新文章功能")
 }
 
