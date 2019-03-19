@@ -101,7 +101,7 @@ func SearchSomgThing(stext string) *[]models.Article {
 		}}
 
 	sea := searcher.Search(ssss)
-	fmt.Println("search response: ", sea, "; docs = ", sea.Docs)
+	//fmt.Println("search response: ", sea, "; docs = ", sea.Docs)
 	return requestToData(sea)
 	//fmt.Println(sea.Docs)
 
