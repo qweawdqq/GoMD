@@ -43,7 +43,7 @@ var (
 
 func init() {
 	InitEngine()
-	fmt.Println("是否使用引擎进行搜索：",isUseSearch)
+	fmt.Println("是否使用引擎进行搜索：", isUseSearch)
 }
 
 func InitEngine() {
@@ -159,7 +159,7 @@ func AddContent(art *models.Article) (err error) {
 	//docid := uint64(time.Now().Unix())
 	docid := uint64(art.Id)
 	//插入
-	searcher.Index(docid, ct)
+	searcher.Index(string(docid), ct)
 	//searcher.Index(22, types.DocData{Content: content})
 	//刷新
 	searcher.Flush()
@@ -169,7 +169,7 @@ func AddContent(art *models.Article) (err error) {
 
 func DeleteContent(id int) {
 	docid := uint64(id)
-	searcher.RemoveDoc(docid, true)
+	searcher.RemoveDoc(string(docid), true)
 	fmt.Println("使用了引擎删除文章功能", docid)
 
 }
@@ -179,7 +179,7 @@ func UpdateContent(id int, art *models.Article) {
 	content := art.Title + "$$" + art.Content
 	ct := types.DocData{Content: content}
 	ct.Attri = art
-	searcher.IndexDoc(docid, ct, true)
+	searcher.IndexDoc(string(docid), ct, true)
 	fmt.Println("使用了引擎更新文章功能")
 }
 
