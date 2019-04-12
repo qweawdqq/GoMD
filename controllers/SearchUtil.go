@@ -19,7 +19,7 @@ var (
 	// searcher is coroutine safe
 	searcher = riot.Engine{}
 	// 是否开启搜索引擎查询
-	isUseSearch = true
+	IsUseSearch = false
 	//text  = "11111111大周日的这个点了 我还要Ò加班"
 	//text1 = `111111日不知道`
 	//text2 = `111111111不知道啊不知道`
@@ -42,8 +42,8 @@ var (
 )
 
 func init() {
-	InitEngine()
-	fmt.Println("是否使用引擎进行搜索：", isUseSearch)
+	//InitEngine()
+	fmt.Println("是否使用引擎进行搜索：", IsUseSearch)
 }
 
 func InitEngine() {
@@ -91,7 +91,7 @@ func SearchSomgThing(stext string) *[]models.Article {
 	//initEngine()
 	//test()
 
-	fmt.Println("搜索的关键字", stext)
+	//fmt.Println("搜索的关键字", stext)
 
 	ssss := types.SearchReq{
 		Text: stext,

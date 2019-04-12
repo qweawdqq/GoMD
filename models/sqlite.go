@@ -20,9 +20,9 @@ func init() {
 	// 备注：此处第一个参数必须设置为“default”（因为我现在只有一个数据库），否则编译报错说：必须有一个注册DB的别名为 default
 	orm.RegisterDataBase("default", "sqlite3", "data.db")
 	// 需要在init中注册定义的model
-	orm.RegisterModel(new(Config),new(Article),new(Taxonomy),new(Link),new(Message),new(Notice))
+	orm.RegisterModel(new(Config), new(Article), new(Taxonomy), new(Link), new(Message), new(Notice))
 	// 开启 orm 调试模式：开发过程中建议打开，release时需要关闭
-	orm.Debug = true
+	orm.Debug = false
 	// 自动建表
 	orm.RunSyncdb("default", false, true)
 
@@ -31,11 +31,11 @@ func init() {
 	//安装初始化
 	Initialization()
 	//sqlx
-	dbx,_ = sqlx.Open("sqlite3","data.db")
+	dbx, _ = sqlx.Open("sqlite3", "data.db")
 }
 
 //安装初始化
-func Initialization(){
+func Initialization() {
 	if _, err := os.Stat("install.lock"); err != nil {
 		if os.IsNotExist(err) {
 			// file does not exist
@@ -44,8 +44,8 @@ func Initialization(){
 			dbc.Insert(&Config{Option: "Author", Value: "admin"})
 			dbc.Insert(&Config{Option: "Password", Value: "admin"})
 			dbc.Insert(&Config{Option: "Theme", Value: "default"})
-			dbc.Insert(&Config{Option: "CopyRight",Value:"GoMD"})
-			dbc.Insert(&Config{Option: "PageSize",Value:"10"})
+			dbc.Insert(&Config{Option: "CopyRight", Value: "GoMD"})
+			dbc.Insert(&Config{Option: "PageSize", Value: "10"})
 			//文章分类表初始化
 			dbc.Insert(&Taxonomy{
 				Name: "默认",
@@ -58,8 +58,8 @@ func Initialization(){
 				Tags:    "文章",
 				Summary: "你好！这是系统为你生成的第一篇文章！",
 				Content: "你好！这是系统为你生成的第一篇文章！",
-				Author: "administrator",
-				Renew:  tools.Int64ToString(time.Now().Unix()),
+				Author:  "administrator",
+				Renew:   tools.Int64ToString(time.Now().Unix()),
 			})
 
 			file, err := os.Create("install.lock")
